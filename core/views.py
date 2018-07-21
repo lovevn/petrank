@@ -4,7 +4,7 @@ import random
 from django.shortcuts import render, redirect, get_object_or_404
 from pets.models import Pet
 
-def root(request):
+def home(request):
     """The home page."""
 
     if request.method == "POST":
