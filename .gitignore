@@ -8,3 +8,4 @@ secrets.py
 *.css
 *.css.map
 .dropbox
+.DS_Store
