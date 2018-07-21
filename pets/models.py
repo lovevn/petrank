@@ -12,6 +12,6 @@ class Pet(models.Model):
     species = models.CharField(
      max_length=16,
      choices=(("CAT", "Cat"), ("DOG", "Dog")),
-     default="DOG"
+     default="CAT"
     )
     elo_rating = models.IntegerField(default=1000)
