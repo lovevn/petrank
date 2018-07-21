@@ -66,7 +66,12 @@
                         <div class="card">
                             <div class="card-image">
                                 <form method="POST">
-                                    <input type="hidden" name="pet" value={{ pet.id }}>
+                                    <input type="hidden" name="winner" value={{ pet.id }}>
+                                    {% for pet2 in pets %}
+                                        {% if pet.id != pet2.id %}
+                                            <input type="hidden" name="loser" value={{ pet2.id }}>
+                                        {% endif %}
+                                    {% endfor %}
                                     {% csrf_token %}
                                     <figure class="image is-4by3">
                                         <img src="{{ pet.url }}" alt="Placeholder image" onclick="$(this).parent().parent().submit()">
@@ -101,8 +106,8 @@
         <div class="content has-text-centered">
             <p>
                 <strong>PetRank</strong> by
-                <a href="https://twitter.com/samirelanduk" target="_blank">@samirelanduk</a> and 
-                <a href="https://twitter.com/alexharston" target="_blank">@alexharston</a>. 
+                <a href="https://twitter.com/samirelanduk" target="_blank">@samirelanduk</a> and
+                <a href="https://twitter.com/alexharston" target="_blank">@alexharston</a>.
                 <p>Source code available
                 <a href="https://www.github.com/alexharston/petrank" target="_blank">here</a>.</p>
             </p>
