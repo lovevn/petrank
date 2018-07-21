@@ -14,8 +14,9 @@
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">
-                    PetRank
+                    PetRank <i class="fas fa-gavel" aria-hidden="true"></i>
                 </h1>
+                
                 <h2 class="subtitle">
                     Rate ur pets
                 </h2>
@@ -23,21 +24,35 @@
         </div>
         <div class="tabs is-centered is-large">
             <ul>
-                <li class="is-active">
-                    <a>
-                        <span class="icon is-large">
-                            <i class="fas fa-gavel" aria-hidden="true"></i>
+                <li>
+                    <div class="control has-icons-left is-primary">
+                        <div class="select">
+                            <select>
+                                <option selected>Cat</option>
+                                <option>Dog</option>
+                            </select>
+                        </div>
+                        <span class="icon is-left">
+                            <i class="fas fa-paw"></i>
                         </span>
-                        <span>Rate</span>
-                    </a>
+                    </div>
                 </li>
                 <li>
-                    <a>
-                        <span class="icon is-large">
-                            <i class="fas fa-upload" aria-hidden="true"></i>
-                        </span>
-                        <span>Upload</span>
-                    </a>
+                    <div class="field">
+                        <div class="file is-primary">
+                            <label class="file-label">
+                                <input class="file-input" type="file" name="resume">
+                                <span class="file-cta">
+                                    <span class="file-icon">
+                                        <i class="fas fa-upload"></i>
+                                    </span>
+                                    <span class="file-label">
+                                        Upload your own picture
+                                    </span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -47,60 +62,30 @@
 
     <section class="hero is-info is-centered">
         <div class="hero-body">
-            <div class="container">
-                <div class="control has-icons-left is-centered">
-                    <div class="select is-medium">
-                        <select>
-                            <option selected>Dog</option>
-                            <option>Cat</option>
-                        </select>
-                    </div>
-                    <span class="icon is-medium is-left">
-                        <i class="fas fa-paw"></i>
-                    </span>
-                </div>
-
-                <div class="columns">
-                    {% for pet in pets %}
-                    <div class="column">
-                        <div class="card">
-                            <div class="card-image">
-                                <form method="POST">
-                                    <input type="hidden" name="winner" value={{ pet.id }}>
-                                    {% for pet2 in pets %}
-                                        {% if pet.id != pet2.id %}
-                                            <input type="hidden" name="loser" value={{ pet2.id }}>
-                                        {% endif %}
-                                    {% endfor %}
-                                    {% csrf_token %}
-                                    <figure class="image is-4by3">
-                                        <img src="{{ pet.url }}" alt="Placeholder image" onclick="$(this).parent().parent().submit()">
-                                    </figure>
-                                </form>
-                            </div>
+            <div class="columns">
+                {% for pet in pets %}
+                <div class="column">
+                    <div class="card">
+                        <div class="card-image">
+                            <form method="POST">
+                                <input type="hidden" name="winner" value={{ pet.id }}>
+                                {% for pet2 in pets %}
+                                    {% if pet.id != pet2.id %}
+                                        <input type="hidden" name="loser" value={{ pet2.id }}>
+                                    {% endif %}
+                                {% endfor %}
+                                {% csrf_token %}
+                                <figure class="image is-4by3">
+                                    <img src="{{ pet.url }}" alt="Placeholder image" onclick="$(this).parent().parent().submit()">
+                                </figure>
+                            </form>
                         </div>
                     </div>
-
-                    {% endfor %}
                 </div>
-
-                <div class="container">
-                    <div class="file is-boxed">
-                        <label class="file-label">
-                            <input class="file-input" type="file" name="resume">
-                            <span class="file-cta">
-                                <span class="file-icon">
-                                    <i class="fas fa-upload"></i>
-                                </span>
-                                <span class="file-label">
-                                    Choose your pet photo..
-                                </span>
-                            </span>
-                        </label>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
+
     </section>
     <footer class="footer">
         <div class="content has-text-centered">
