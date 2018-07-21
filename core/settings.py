@@ -33,3 +33,13 @@ MIDDLEWARE = [
 
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, "../static"))
+
+TEMPLATES = [{
+ "BACKEND": "django.template.backends.django.DjangoTemplates",
+ "APP_DIRS": True,
+ "OPTIONS": {
+  "context_processors": [
+   "django.template.context_processors.request"
+  ],
+ },
+}]
