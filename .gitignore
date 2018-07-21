@@ -5,7 +5,5 @@ secrets.py
 *.log
 *.json
 *.sh
-*.css
-*.css.map
 .dropbox
 .DS_Store
