@@ -7,3 +7,4 @@ secrets.py
 *.sh
 *.css
 *.css.map
+.dropbox
