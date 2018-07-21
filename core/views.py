@@ -3,7 +3,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from pets.models import Pet
 
 def root(request):
-
+    if request.method == "POST":
+        return redirect("/")
     pets = list(Pet.objects.all())
     pet1 = random.choice(pets)
     pets.remove(pet1)
