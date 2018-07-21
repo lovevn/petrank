@@ -1,8 +1,12 @@
+"""The core views."""
+
 import random
 from django.shortcuts import render, redirect, get_object_or_404
 from pets.models import Pet
 
 def root(request):
+    """The home page."""
+
     if request.method == "POST":
         winner = Pet.objects.get(id=request.POST["winner"])
         loser = Pet.objects.get(id=request.POST["loser"])
