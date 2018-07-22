@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block main %}
+<table>
+    {% for pet in pets %}
+        <tr>
+            <td>{{ pet.species }}</td>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ pet.elo_rating }}</td>
+            <td><a href="{{ pet.url }}">Link</a></td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}
