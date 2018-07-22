@@ -64,7 +64,10 @@ class Pet(models.Model):
 
     def ranking(self):
         pets = list(Pet.objects.filter(species=self.species, verified=True).order_by("-elo_rating"))
-        return pets.index(self) + 1, len(pets)
+        if self.verified:
+            return pets.index(self) + 1, len(pets)
+        else:
+            return [0, len(pets)]
 
 
 
