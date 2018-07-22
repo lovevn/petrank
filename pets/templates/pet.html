@@ -3,6 +3,7 @@
 {% block main %}
 <div class="container">
     <div>VERIFIED: {{ pet.verified }}</div>
+    <div>RANK: {{ pet.ranking.0 }} of {{ pet.ranking.1 }}</div>
     <img src="/{{ pet.mediafile.url }}">
     <div id="eloChart"></div>
     <div id="eloTimeChart"></div>

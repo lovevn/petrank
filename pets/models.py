@@ -62,6 +62,11 @@ class Pet(models.Model):
         )
 
 
+    def ranking(self):
+        pets = list(Pet.objects.filter(species=self.species, verified=True).order_by("-elo_rating"))
+        return pets.index(self) + 1, len(pets)
+
+
 
 class PetSnapshot(models.Model):
     """A snapshot of a pet's rating at a given time."""
