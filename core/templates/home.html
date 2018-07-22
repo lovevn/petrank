@@ -1,108 +1,68 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="/static/images/favicon.ico">
-    <title>PetRank</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
-</head>
-
-<body>
-    <section class="hero is-primary">
-        <div class="hero-body">
-            <div class="container">
-                <h1 class="title">
-                    PetRank <i class="fas fa-gavel" aria-hidden="true"></i>
-                </h1>
-
-                <h2 class="subtitle">
-                    Rate ur pets
-                </h2>
-            </div>
-        </div>
-        <div class="tabs is-centered is-large">
-            <ul>
-                <li>
-                    <div class="control has-icons-left is-primary">
-                        <div class="select">
-                            <select id="speciesSelect">
-                                <option {% if species == 'PUSS' %}selected{% endif %}>Cat</option>
-                                <option {% if species == 'DOGGO' %}selected{% endif %}>Dog</option>
-                            </select>
-                        </div>
-                        <span class="icon is-left">
-                            <i class="fas fa-paw"></i>
-                        </span>
+{% block main %}
+<section class="">
+    <div class="tabs is-primary is-centered is-large">
+        <ul>
+            <li>
+                <div class="control has-icons-left is-primary">
+                    <div class="select">
+                        <select id="speciesSelect">
+                            <option {% if species == 'PUSS' %}selected{% endif %}>Cat</option>
+                            <option {% if species == 'DOGGO' %}selected{% endif %}>Dog</option>
+                        </select>
                     </div>
-                </li>
-                <li>
-                    <div class="field">
-                        <div class="file is-primary">
-                            <label class="file-label">
-                                <input class="file-input" type="file" name="resume">
-                                <span class="file-cta">
-                                    <span class="file-icon">
-                                        <i class="fas fa-upload"></i>
-                                    </span>
-                                    <span class="file-label">
-                                        Upload your own picture
-                                    </span>
+                    <span class="icon is-left">
+                        <i class="fas fa-paw"></i>
+                    </span>
+                </div>
+            </li>
+            <li>
+                <div class="field">
+                    <div class="file is-primary">
+                        <label class="file-label">
+                            <input class="file-input" type="file" name="resume">
+                            <span class="file-cta">
+                                <span class="file-icon">
+                                    <i class="fas fa-upload"></i>
                                 </span>
-                            </label>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </section>
-
-
-
-    <section class="hero is-info is-centered">
-        <div class="hero-body">
-            <div class="columns">
-                {% for pet in pets %}
-                <div class="column">
-                    <div class="card">
-                        <div class="card-image">
-                            <form method="POST">
-                                <input type="hidden" name="winner" value={{ pet.id }}>
-                                {% for pet2 in pets %}
-                                    {% if pet.id != pet2.id %}
-                                        <input type="hidden" name="loser" value={{ pet2.id }}>
-                                    {% endif %}
-                                {% endfor %}
-                                {% csrf_token %}
-                                <figure class="image is-4by3">
-                                    <img src="{{ pet.url }}" alt="Placeholder image" onclick="$(this).parent().parent().submit()">
-                                </figure>
-                            </form>
-                        </div>
+                                <span class="file-label">
+                                    Upload your own picture
+                                </span>
+                            </span>
+                        </label>
                     </div>
                 </div>
-                {% endfor %}
-            </div>
-        </div>
+            </li>
+        </ul>
+    </div>
+</section>
 
-    </section>
-    <footer class="footer has-text-centered">
-            <p>
-                <strong>PetRank</strong> by
-                <a href="https://twitter.com/samirelanduk" target="_blank">@samirelanduk</a> and
-                <a href="https://twitter.com/alexharston" target="_blank">@alexharston</a>.
-                <p>Source code available
-                <a href="https://www.github.com/alexharston/petrank" target="_blank">here</a>.</p>
-            </p>
-    </footer>
-</body>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script>
-    $("#speciesSelect").change(function() {
-        window.location.replace("/?s=" + ($(this).val() == 'Cat' ? 'PUSS' : 'DOGGO'));
-    })
-</script>
-</html>
+<section class="hero is-info is-centered">
+    <div class="hero-body">
+        <div class="columns">
+            {% for pet in pets %}
+            <div class="column">
+                <div class="card">
+                    <div class="card-image">
+                        <form method="POST">
+                            <input type="hidden" name="winner" value={{ pet.id }}>
+                            {% for pet2 in pets %}
+                                {% if pet.id != pet2.id %}
+                                    <input type="hidden" name="loser" value={{ pet2.id }}>
+                                {% endif %}
+                            {% endfor %}
+                            {% csrf_token %}
+                            <figure class="image is-4by3">
+                                <img src="{{ pet.url }}" alt="Placeholder image" onclick="$(this).parent().parent().submit()">
+                            </figure>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</section>
+{% endblock %}

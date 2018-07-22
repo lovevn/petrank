@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/images/favicon.ico">
+    <title>PetRank</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+</head>
+
+<body>
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    PetRank <i class="fas fa-gavel" aria-hidden="true"></i>
+                </h1>
+
+                <h2 class="subtitle">
+                    Rate ur pets
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        {% block main %}{% endblock %}
+    </main>
+
+    <footer class="footer has-text-centered">
+            <p>
+                <strong>PetRank</strong> by
+                <a href="https://twitter.com/samirelanduk" target="_blank">@samirelanduk</a> and
+                <a href="https://twitter.com/alexharston" target="_blank">@alexharston</a>.
+                <p>Source code available
+                <a href="https://www.github.com/alexharston/petrank" target="_blank">here</a>.</p>
+            </p>
+    </footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#speciesSelect").change(function() {
+        window.location.replace("/?s=" + ($(this).val() == 'Cat' ? 'PUSS' : 'DOGGO'));
+    })
+</script>
+</html>
