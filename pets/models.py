@@ -19,8 +19,8 @@ class Pet(models.Model):
 
 
     @staticmethod
-    def create_from_url(url, species="PUSS"):
-        pet = Pet.objects.create(url=url, species=species)
+    def create_from_file(file, species="PUSS"):
+        pet = Pet.objects.create(mediafile=file, species=species)
         PetSnapshot.objects.create(
          datetime=datetime.now(),
          pet=pet,

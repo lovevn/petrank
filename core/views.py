@@ -11,8 +11,9 @@ def home(request):
 
     if request.method == "POST":
         if "file" in request.FILES:
-            Pet.objects.create(
-             mediafile=request.FILES["file"]
+            Pet.create_from_file(
+             file=request.FILES["file"],
+             species=species
             )
             return redirect("/pets/")
         else:
@@ -27,6 +28,7 @@ def home(request):
     pets.remove(pet1)
     pet2 = random.choice(pets)
     return render(request, "home.html", {"pets": [pet1, pet2], "species": species})
+
 
 def terms(request):
     return render(request, "terms.html")

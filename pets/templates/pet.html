@@ -2,7 +2,7 @@
 
 {% block main %}
 <div class="container">
-    <img src="{{ pet.url }}">
+    <img src="/{{ pet.mediafile.url }}">
     <div id="eloChart"></div>
 </div>
 
@@ -23,7 +23,7 @@
         },
         series: [{
             name: "ELO Rating",
-            data: {{ data}},
+            data: {{ data }},
             type: "line",
         }],
         xAxis: {
