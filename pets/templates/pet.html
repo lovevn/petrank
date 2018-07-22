@@ -2,6 +2,46 @@
 
 {% block main %}
 <div class="container">
-<img src="{{ pet.url }}">
+    <img src="{{ pet.url }}">
+    <div id="eloChart"></div>
 </div>
+
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+
+<script>
+    var residueChart = Highcharts.chart("eloChart", {
+        chart: {
+            plotBorderWidth: 1,
+            marginLeft: 50
+        },
+        title: {
+            text: "Rank over Time"
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: "ELO Rating",
+            data: {{ data}},
+            type: "line",
+        }],
+        xAxis: {
+            type: "datetime",
+            title: {
+                enabled: true,
+                text:"Time"
+            },
+        },
+        yAxis: {
+            title: {
+                enabled: true,
+                text:"ELO Rating"
+            },
+        },
+        legend: {
+            enabled: false
+        }
+    });
+</script>
 {% endblock %}

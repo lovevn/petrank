@@ -1,13 +1,15 @@
 """Pet specific views."""
 
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Pet
+from .models import Pet, PetSnapshot
 
 def pet(request, id):
     """The view to look at a particular pet image and its stats."""
 
     pet = get_object_or_404(Pet, id=id)
-    return render(request, "pet.html", {"pet": pet})
+    snapshots = PetSnapshot.objects.filter(pet=pet)
+    data = [[int(s.datetime.strftime('%s')) * 1000, s.elo_rating] for s in snapshots]
+    return render(request, "pet.html", {"pet": pet, "data": data})
 
 
 def pets(request):
