@@ -1,14 +1,38 @@
 {% extends "base.html" %}
 
 {% block main %}
-<table>
-    {% for pet in pets %}
-        <tr>
-            <td>{{ pet.species }}</td>
-            <td>{{ forloop.counter }}</td>
-            <td>{{ pet.elo_rating }}</td>
-            <td><a href="{{ pet.url }}">Link</a></td>
-        </tr>
+
+<div class="container">
+    {% for list in lists %}
+        <h2 class"title is-3">{{ list.1 }}</h2>
+        <table class="table is-striped is-hoverable is-fullwidth is-centered">
+            <thead>
+                <tr>
+                    <th>Species</th>
+                    <th>Rank</th>
+                    <th>ELO rating</th>
+                </tr>
+            </thead>
+            {% for pet in list.0 %}
+                    <tr class="is-clickable" data-href="/pets/{{ pet.id }}/">
+                            <td >{{ pet.species }}</td>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ pet.elo_rating }}</td>
+                    </tr>
+            {% endfor %}
+        </table>
     {% endfor %}
-</table>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".is-clickable").click(function() {
+            console.log(this)
+            window.location = $(this).data("href");
+        });
+        console.log("run");
+    });
+</script>
+
 {% endblock %}
+<a href="/pets/{{ pet.id }}/"></a>
