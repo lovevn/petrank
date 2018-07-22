@@ -1,5 +1,6 @@
 """Pet models."""
 
+import random
 from datetime import datetime
 from django.db import models
 
@@ -28,6 +29,16 @@ class Pet(models.Model):
          elo_rating=pet.elo_rating
         )
         return pet
+
+
+    @staticmethod
+    def two_random_images(species):
+        pets = list(Pet.objects.filter(species=species, verified=True))
+        if len(pets) < 2: pets = [None, None]
+        pet1 = random.choice(pets)
+        pets.remove(pet1)
+        pet2 = random.choice(pets)
+        return [pet1, pet2]
 
 
     def defeat(self, loser):
