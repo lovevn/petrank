@@ -7,3 +7,5 @@ secrets.py
 *.sh
 .dropbox
 .DS_Store
+.vscode
+media

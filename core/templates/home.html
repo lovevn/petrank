@@ -21,13 +21,16 @@
                 <div class="field">
                     <div class="file is-primary">
                         <label class="file-label">
-                            <input class="file-input" type="file" name="resume">
+                            <form method="POST" enctype="multipart/form-data">
+                                <input class="file-input" type="file" name="file" onchange="this.form.submit()">
+                                {% csrf_token %}
+                            </form>
                             <span class="file-cta">
                                 <span class="file-icon">
                                     <i class="fas fa-upload"></i>
                                 </span>
                                 <span class="file-label">
-                                    Upload your own picture
+                                    Upload your {{ species }}
                                 </span>
                             </span>
                         </label>
@@ -35,7 +38,12 @@
                 </div>
             </li>
             <li>
-                <a href="/pets/">Rankingss</a>
+                <a href="/pets/">
+                    <span class="icon is-small">
+                        <i class="fas fa-chart-line" aria-hidden="true"></i>
+                    </span>
+                    <span>Rankings</span>
+                </a>
             </li>
         </ul>
     </div>
@@ -57,7 +65,7 @@
                             {% endfor %}
                             {% csrf_token %}
                             <figure class="image is-4by3">
-                                <img src="{{ pet.url }}" alt="Placeholder image" onclick="$(this).parent().parent().submit()">
+                                <img src="/{{ pet.mediafile.url }}" alt="{{ species }} {{ forloop.counter}}" onclick="$(this).parent().parent().submit()">
                             </figure>
                         </form>
                     </div>

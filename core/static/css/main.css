@@ -1,4 +1,8 @@
-img {
+figure img {
+    cursor: pointer;
+}
+
+tr {
     cursor: pointer;
 }
 
@@ -9,4 +13,11 @@ img {
     width: 100%;
     background-position: center;
     -webkit-display: none;
+}
+
+h2.title {
+    font-size: 110%;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px;
 }

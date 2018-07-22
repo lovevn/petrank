@@ -9,7 +9,7 @@ class Pet(models.Model):
     class Meta:
         db_table = "pets"
 
-    url = models.URLField(unique=True)
+    mediafile = models.FileField()
     species = models.CharField(
      max_length=16,
      choices=(("PUSS", "Cat"), ("DOGGO", "Dog")),
