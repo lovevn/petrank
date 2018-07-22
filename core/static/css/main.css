@@ -1,5 +1,7 @@
 figure img {
     cursor: pointer;
+    object-fit: cover;
+    overflow: hidden;
 }
 
 tr {

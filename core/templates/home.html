@@ -49,9 +49,9 @@
     </div>
 </section>
 
-<section class="hero is-info is-centered">
+<section class="hero is-info">
     <div class="hero-body">
-        <div class="columns">
+        <div class="columns is-mobile">
             {% for pet in pets %}
             <div class="column">
                 <div class="card">
@@ -64,7 +64,7 @@
                                 {% endif %}
                             {% endfor %}
                             {% csrf_token %}
-                            <figure class="image is-4by3">
+                            <figure class="image is-square">
                                 <img src="/{{ pet.mediafile.url }}" alt="{{ species }} {{ forloop.counter}}" onclick="$(this).parent().parent().submit()">
                             </figure>
                         </form>
