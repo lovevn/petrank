@@ -11,11 +11,11 @@ def home(request):
 
     if request.method == "POST":
         if "file" in request.FILES:
-            Pet.create_from_file(
+            pet = Pet.create_from_file(
              file=request.FILES["file"],
              species=species
             )
-            return redirect("/pets/")
+            return redirect("/pets/{}/".format(pet.id))
         else:
             winner = Pet.objects.get(id=request.POST["winner"])
             loser = Pet.objects.get(id=request.POST["loser"])

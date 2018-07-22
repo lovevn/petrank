@@ -21,6 +21,7 @@ INSTALLED_APPS = [
  "django.contrib.contenttypes",
  "django.contrib.staticfiles",
  "django.contrib.humanize",
+ "django_unused_media",
  "core",
  "pets"
 ]
