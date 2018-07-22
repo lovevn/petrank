@@ -52,19 +52,21 @@ class Pet(models.Model):
         loser_prob = (1.0 / (1.0 + pow(10, ((loser.elo_rating-self.elo_rating) / 400))))
 
         self.elo_rating = self.elo_rating + (30 * (1 - winner_prob))
-        loser.elo_rating = loser.elo_rating + (30 * (0 - winner_prob))
+        loser.elo_rating = loser.elo_rating + (30 * (0 - loser_prob))
         self.save()
         loser.save()
 
         PetSnapshot.objects.create(
          datetime=datetime.now(),
          pet=self,
-         elo_rating=self.elo_rating
+         elo_rating=self.elo_rating,
+         won_against=loser
         )
         PetSnapshot.objects.create(
          datetime=datetime.now(),
          pet=loser,
-         elo_rating=loser.elo_rating
+         elo_rating=loser.elo_rating,
+         lost_against=self
         )
 
 
@@ -86,3 +88,5 @@ class PetSnapshot(models.Model):
     datetime = models.DateTimeField()
     pet = models.ForeignKey(Pet, on_delete=models.CASCADE)
     elo_rating = models.IntegerField()
+    won_against = models.ForeignKey(Pet, on_delete=models.CASCADE, null=True, blank=True, related_name='%(class)s_won_against')
+    lost_against = models.ForeignKey(Pet, on_delete=models.CASCADE, null=True, blank=True, related_name='%(class)s_lost_against')
