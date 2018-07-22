@@ -11,7 +11,13 @@ class Pet(models.Model):
         db_table = "pets"
         ordering = ["verified"]
 
-    mediafile = models.FileField()
+
+    def create_filename(instance, filename):
+        extension = "." + filename.split(".")[-1] if "." in filename else ""
+        return datetime.strftime(datetime.now(), "%Y%m%d-%H%M%S") + extension
+
+
+    mediafile = models.FileField(upload_to=create_filename)
     species = models.CharField(
      max_length=16,
      choices=(("Cat", "Cat"), ("Dog", "Dog")),
