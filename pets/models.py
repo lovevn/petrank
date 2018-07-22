@@ -9,6 +9,7 @@ class Pet(models.Model):
 
     class Meta:
         db_table = "pets"
+        ordering = ["verified"]
 
     mediafile = models.FileField()
     species = models.CharField(
@@ -18,6 +19,11 @@ class Pet(models.Model):
     )
     elo_rating = models.IntegerField(default=1000)
     verified = models.BooleanField(default=False)
+
+    def __str__(self):
+        return "<Pet ({}): {}verified {}>".format(
+         self.id, "" if self.verified else "un", self.species
+        )
 
 
     @staticmethod

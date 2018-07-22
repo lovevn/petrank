@@ -1,5 +1,6 @@
 from django.urls import path, include
 from django.conf.urls.static import static
+from django.contrib import admin
 import core.views as core_views
 import pets.views as pet_views
 from django.conf import settings
@@ -9,6 +10,7 @@ urlpatterns = [
  path(r"pets/", pet_views.pets),
  path(r"pets/<slug:id>/", pet_views.pet),
  path(r"terms/", core_views.terms),
+ path(r"admin/", admin.site.urls),
 ] + static(
  settings.MEDIA_URL,
  document_root=settings.MEDIA_ROOT
