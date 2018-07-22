@@ -16,6 +16,7 @@ class Pet(models.Model):
      default="PUSS"
     )
     elo_rating = models.IntegerField(default=1000)
+    verified = models.BooleanField(default=False)
 
 
     @staticmethod
