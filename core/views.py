@@ -7,6 +7,8 @@ from pets.models import Pet
 def home(request):
     """The home page."""
 
+    species = request.GET["s"] if request.GET else "CAT"
+
     if request.method == "POST":
         winner = Pet.objects.get(id=request.POST["winner"])
         loser = Pet.objects.get(id=request.POST["loser"])
@@ -18,9 +20,9 @@ def home(request):
         loser.elo_rating = loser.elo_rating + (30 * (0 - winner_prob))
         winner.save()
         loser.save()
-        return redirect("/")
-    pets = list(Pet.objects.all())
+        return redirect("/?s=" + species)
+    pets = list(Pet.objects.filter(species=species))
     pet1 = random.choice(pets)
     pets.remove(pet1)
     pet2 = random.choice(pets)
-    return render(request, "home.html", {"pets": [pet1, pet2]})
+    return render(request, "home.html", {"pets": [pet1, pet2], "species": species})
