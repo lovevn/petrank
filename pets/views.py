@@ -8,8 +8,9 @@ def pet(request, id):
 
     pet = get_object_or_404(Pet, id=id)
     snapshots = PetSnapshot.objects.filter(pet=pet)
-    data = [[int(s.datetime.strftime('%s')) * 1000, s.elo_rating] for s in snapshots]
-    return render(request, "pet.html", {"pet": pet, "data": data})
+    time_data = [[int(s.datetime.strftime('%s')) * 1000, s.elo_rating] for s in snapshots]
+    data = [d[1] for d in time_data]
+    return render(request, "pet.html", {"pet": pet, "time_data": time_data, "data": data})
 
 
 def pets(request):

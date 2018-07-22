@@ -5,6 +5,7 @@
     <div>VERIFIED: {{ pet.verified }}</div>
     <img src="/{{ pet.mediafile.url }}">
     <div id="eloChart"></div>
+    <div id="eloTimeChart"></div>
 </div>
 
 
@@ -17,7 +18,7 @@
             marginLeft: 50
         },
         title: {
-            text: "Rank over Time"
+            text: "Rank Changes"
         },
         credits: {
             enabled: false
@@ -25,6 +26,41 @@
         series: [{
             name: "ELO Rating",
             data: {{ data }},
+            type: "line",
+        }],
+        xAxis: {
+            title: {
+                enabled: true,
+                text:"Time"
+            },
+        },
+        yAxis: {
+            title: {
+                enabled: true,
+                text:"ELO Rating"
+            },
+        },
+        legend: {
+            enabled: false
+        }
+    });
+</script>
+
+<script>
+    var residueChart = Highcharts.chart("eloTimeChart", {
+        chart: {
+            plotBorderWidth: 1,
+            marginLeft: 50
+        },
+        title: {
+            text: "Rank over Time"
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: "ELO Rating",
+            data: {{ time_data }},
             type: "line",
         }],
         xAxis: {
