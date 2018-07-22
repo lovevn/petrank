@@ -10,12 +10,14 @@
                 <tr>
                     <th>Rank</th>
                     <th>ELO rating</th>
+                    <th>Thumbnail</th>
                 </tr>
             </thead>
             {% for pet in list.0 %}
                     <tr class="is-clickable" data-href="/pets/{{ pet.id }}/">
                             <td>{{ forloop.counter }}</td>
                             <td>{{ pet.elo_rating }}</td>
+                            <td><img src="{{ pet.mediafile.url }}"></td>
                     </tr>
             {% endfor %}
         </table>

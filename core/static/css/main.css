@@ -23,3 +23,18 @@ h2.title {
     text-align: center;
     margin-top: 50px;
 }
+
+td img {
+    width: 25px;
+    height: 25px;
+}
+
+@include mobile {
+  .tabs ul {
+    flex-direction: column;
+
+    li {
+      width: 100%;
+    }
+  }
+}
