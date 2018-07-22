@@ -61,11 +61,10 @@ subprocess.call(
  shell=True
 )
 
-'''# Add google analytics
 subprocess.call(
  "ssh {} 'sed -i s/\"<!--analytics-->\"/\"\{{% include \\\"analytics.html\\\" %\}}\"/g ~/{}/source/core/templates/base.html'".format(sitename, sitename),
  shell=True
-)'''
+)
 
 
 # Install pip packages

@@ -6,7 +6,7 @@
             <div class="container">
 
                 {% if pet.verified %}
-                <h3 class="title is-size-3"> 
+                <h3 class="title is-size-3">
                     <i class="fas fa-check-circle has-text-success" aria-hidden="true"></i> Verified: {{ pet.verified }}
                 </h2>
                 {% else %}
@@ -20,83 +20,92 @@
         </div>
     </section>
 
-    <div class="container" style="align-content: center">
-        <img src="/{{ pet.mediafile.url }}">
-        <div id="eloChart"></div>
-        <div id="eloTimeChart"></div>
+    <div class="container">
+        <div class="card">
+            <div class="card-image ">
+                <figure class="image">
+                    <img src="{{ pet.mediafile.url }}">
+                </figure>
+            </div>
+            <div class="card-content">
+                <div id="eloChart"></div>
+                <div id="eloTimeChart"></div>
+            </div>
+        </div>
     </div>
 
-<script src="https://code.highcharts.com/highcharts.js"></script>
 
-<script>
-    var residueChart = Highcharts.chart("eloChart", {
-        chart: {
-            plotBorderWidth: 1,
-            marginLeft: 50
-        },
-        title: {
-            text: "Rank Changes"
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            name: "ELO Rating",
-            data: {{ data }},
-            type: "line",
-        }],
-        xAxis: {
-            title: {
-                enabled: true,
-                text:"Time"
-            },
-        },
-        yAxis: {
-            title: {
-                enabled: true,
-                text:"ELO Rating"
-            },
-        },
-        legend: {
-            enabled: false
-        }
-    });
-</script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
 
-<script>
-    var residueChart = Highcharts.chart("eloTimeChart", {
-        chart: {
-            plotBorderWidth: 1,
-            marginLeft: 50
-        },
-        title: {
-            text: "Rank over Time"
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            name: "ELO Rating",
-            data: {{ time_data }},
-            type: "line",
-        }],
-        xAxis: {
-            type: "datetime",
-            title: {
-                enabled: true,
-                text:"Time"
+    <script>
+        var residueChart = Highcharts.chart("eloChart", {
+            chart: {
+                plotBorderWidth: 1,
+                marginLeft: 50
             },
-        },
-        yAxis: {
             title: {
-                enabled: true,
-                text:"ELO Rating"
+                text: "Rank Changes"
             },
-        },
-        legend: {
-            enabled: false
-        }
-    });
-</script>
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: "ELO Rating",
+                data: {{ data }},
+                type: "line",
+            }],
+            xAxis: {
+                title: {
+                    enabled: true,
+                    text:"Time"
+                },
+            },
+            yAxis: {
+                title: {
+                    enabled: true,
+                    text:"ELO Rating"
+                },
+            },
+            legend: {
+                enabled: false
+            }
+        });
+    </script>
+
+    <script>
+        var residueChart = Highcharts.chart("eloTimeChart", {
+            chart: {
+                plotBorderWidth: 1,
+                marginLeft: 50
+            },
+            title: {
+                text: "Rank over Time"
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: "ELO Rating",
+                data: {{ time_data }},
+                type: "line",
+            }],
+            xAxis: {
+                type: "datetime",
+                title: {
+                    enabled: true,
+                    text:"Time"
+                },
+            },
+            yAxis: {
+                title: {
+                    enabled: true,
+                    text:"ELO Rating"
+                },
+            },
+            legend: {
+                enabled: false
+            }
+        });
+    </script>
 
 {% endblock %}
