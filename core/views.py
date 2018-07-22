@@ -6,7 +6,7 @@ from pets.models import Pet
 def home(request):
     """The home page."""
 
-    species = request.GET["s"] if request.GET else "PUSS"
+    species = request.GET["s"] if request.GET else "Cat"
     if request.method == "POST":
         if "file" in request.FILES:
             pet = Pet.create_from_file(
@@ -19,6 +19,7 @@ def home(request):
             loser = Pet.objects.get(id=request.POST["loser"])
             winner.defeat(loser)
             return redirect("/?s=" + species)
+    print(species)
     pets = Pet.two_random_images(species)
     return render(request, "home.html", {"pets": pets, "species": species})
 

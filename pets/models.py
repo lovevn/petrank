@@ -13,15 +13,15 @@ class Pet(models.Model):
     mediafile = models.FileField()
     species = models.CharField(
      max_length=16,
-     choices=(("PUSS", "Cat"), ("DOGGO", "Dog")),
-     default="PUSS"
+     choices=(("Cat", "Cat"), ("Dog", "Dog")),
+     default="Cat"
     )
     elo_rating = models.IntegerField(default=1000)
     verified = models.BooleanField(default=False)
 
 
     @staticmethod
-    def create_from_file(file, species="PUSS"):
+    def create_from_file(file, species="Cat"):
         pet = Pet.objects.create(mediafile=file, species=species)
         PetSnapshot.objects.create(
          datetime=datetime.now(),
