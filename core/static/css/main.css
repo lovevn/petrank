@@ -29,7 +29,7 @@ td img {
     height: 25px;
 }
 
-@include mobile {
+@media only screen and (max-width: 550px){
   .tabs ul {
     flex-direction: column;
 
