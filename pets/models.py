@@ -11,7 +11,7 @@ class Pet(models.Model):
     url = models.URLField(unique=True)
     species = models.CharField(
      max_length=16,
-     choices=(("CAT", "Cat"), ("DOG", "Dog")),
-     default="CAT"
+     choices=(("PUSS", "Cat"), ("DOGGO", "Dog")),
+     default="PUSS"
     )
     elo_rating = models.IntegerField(default=1000)

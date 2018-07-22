@@ -30,8 +30,8 @@
                     <div class="control has-icons-left is-primary">
                         <div class="select">
                             <select id="speciesSelect">
-                                <option {% if species == 'CAT' %}selected{% endif %}>Cat</option>
-                                <option {% if species == 'DOG' %}selected{% endif %}>Dog</option>
+                                <option {% if species == 'PUSS' %}selected{% endif %}>Cat</option>
+                                <option {% if species == 'DOGGO' %}selected{% endif %}>Dog</option>
                             </select>
                         </div>
                         <span class="icon is-left">
@@ -102,7 +102,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
     $("#speciesSelect").change(function() {
-        window.location.replace("/?s=" + $(this).val().toUpperCase());
+        window.location.replace("/?s=" + ($(this).val() == 'Cat' ? 'PUSS' : 'DOGGO'));
     })
 </script>
 </html>

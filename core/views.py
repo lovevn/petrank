@@ -7,7 +7,7 @@ from pets.models import Pet
 def home(request):
     """The home page."""
 
-    species = request.GET["s"] if request.GET else "CAT"
+    species = request.GET["s"] if request.GET else "PUSS"
 
     if request.method == "POST":
         winner = Pet.objects.get(id=request.POST["winner"])
