@@ -54,11 +54,12 @@ class Pet(models.Model):
 
 
     def defeat(self, loser):
-        winner_prob = (1.0 / (1.0 + pow(10, ((self.elo_rating-loser.elo_rating) / 400))))
-        loser_prob = (1.0 / (1.0 + pow(10, ((loser.elo_rating-self.elo_rating) / 400))))
-
-        self.elo_rating = self.elo_rating + (30 * (1 - winner_prob))
-        loser.elo_rating = loser.elo_rating + (30 * (0 - loser_prob))
+        r1 = 10 ** (self.elo_rating / 400)
+        r2 = 10 ** (loser.elo_rating / 400)
+        e1 = r1 / (r1 + r2)
+        e2 = r2 / (r1 + r2)
+        self.elo_rating = self.elo_rating + (30 * (1 - e1))
+        loser.elo_rating = loser.elo_rating + (30 * (0 - e2))
         self.save()
         loser.save()
 
