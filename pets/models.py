@@ -25,6 +25,8 @@ class Pet(models.Model):
     )
     elo_rating = models.IntegerField(default=1000)
     verified = models.BooleanField(default=False)
+    name = models.CharField(max_length=256, default="Anonymous")
+    owner = models.CharField(max_length=256, default="Anonymous")
 
     def __str__(self):
         return "<Pet ({}): {}verified {}>".format(
@@ -33,8 +35,11 @@ class Pet(models.Model):
 
 
     @staticmethod
-    def create_from_file(file, species="Cat"):
-        pet = Pet.objects.create(mediafile=file, species=species)
+    def create_from_file(request):
+        pet = Pet.objects.create(mediafile=request.FILES["file"], species=request.POST["species"])
+        if request.POST["name"]: pet.name = request.POST["name"]
+        if request.POST["owner"]: pet.owner = request.POST["owner"]
+        pet.save()
         PetSnapshot.objects.create(
          datetime=datetime.now(),
          pet=pet,
@@ -54,6 +59,8 @@ class Pet(models.Model):
 
 
     def defeat(self, loser):
+        """Defeat another Pet and update ELO rankings accordingly."""
+        
         r1 = 10 ** (self.elo_rating / 400)
         r2 = 10 ** (loser.elo_rating / 400)
         e1 = r1 / (r1 + r2)
@@ -78,7 +85,12 @@ class Pet(models.Model):
 
 
     def ranking(self):
-        pets = list(Pet.objects.filter(species=self.species, verified=True).order_by("-elo_rating"))
+        """The position of the pet among all verified pets, ordered by ELO
+        rating."""
+
+        pets = list(Pet.objects.filter(
+         species=self.species, verified=True
+        ).order_by("-elo_rating"))
         if self.verified:
             return pets.index(self) + 1, len(pets)
         else:
