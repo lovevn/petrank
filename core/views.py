@@ -25,3 +25,7 @@ def home(request):
 
 def terms(request):
     return render(request, "terms.html")
+
+
+def not_found(request, exception):
+    return redirect("/")
