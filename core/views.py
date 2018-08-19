@@ -18,8 +18,7 @@ def home(request):
             winner = Pet.objects.get(id=request.POST["winner"])
             loser = Pet.objects.get(id=request.POST["loser"])
             winner.defeat(loser)
-            return redirect("/?s=" + species)
-    print(species)
+            return redirect("/?s=" + species + "#choices")
     pets = Pet.two_random_images(species)
     return render(request, "home.html", {"pets": pets, "species": species})
 
