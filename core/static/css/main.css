@@ -44,3 +44,7 @@ td img {
     font-size: 2em;
     text-align: center;
 }
+
+.tabs a {
+    border-bottom-style: none;
+}

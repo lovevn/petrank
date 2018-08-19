@@ -17,7 +17,7 @@
                     </span>
                 </div>
             </li>
-            <li>
+            <!-- <li>
                 <div class="field">
                     <div class="file is-primary">
                         <label class="file-label">
@@ -36,7 +36,16 @@
                         </label>
                     </div>
                 </div>
+            </li> -->
+            <li>
+                <a href="/upload/">
+                    <span class="icon is-small">
+                        <i class="fas fa-upload" aria-hidden="true"></i>
+                    </span>
+                    <span>Upload</span>
+                </a>
             </li>
+
             <li>
                 <a href="/pets/">
                     <span class="icon is-small">
@@ -51,7 +60,7 @@
 
 <section class="hero is-info"><a name="choices"></a>
     <div class="hero-body">
-        <div><h2 class="which">Which one?</h2></div>
+        <div><h2 class="which">Pick one</h2></div>
         <div class="columns is-mobile">
             {% for pet in pets %}
             <div class="column">
@@ -69,6 +78,9 @@
                                 <img src="{{ pet.mediafile.url }}" alt="{{ species }} {{ forloop.counter}}" onclick="$(this).parent().parent().submit()">
                             </figure>
                         </form>
+                    </div>
+                    <div class="has-text-centered">
+                       <p class="h1"> {{pet.name}} </p>
                     </div>
                 </div>
             </div>

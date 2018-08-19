@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+<script>
+    function requireCheckbox() {
+        if ($("#myFile").val() != '') {
+            return true;
+        }
+
+        else {
+            document.getElementById("filename").innerHTML = "Please select a file to upload.";
+            return false;
+        }
+    }
+
+    function fileChecker() {
+
+        var file = document.getElementById("myFile");
+        file.onchange = function () {
+            if (file.files.length > 0) {
+                document.getElementById('filename').innerHTML = file.files[0].name;
+            }
+        };
+    }
+
+</script>
+<section>
+    <div class="container">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label class="label">Species</label>
+            <div class="select">
+                <select name="species" >
+                    <option value="Cat">Cat</option>
+                    <option value ="Dog">Dog</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label class="label">Pet Name</label>
+                <div class="control">
+                    <input class="input" type="text" name="name" placeholder="Enter your pet's name" autocomplete="off">
+                </div>
+                <!-- <p class="help">This is a help text</p> -->
+            </div>
+
+            <div class="field">
+                <label class="label">Owner Name</label>
+                <div class="control">
+                    <input class="input" type="text" name="owner" placeholder="Enter your own name" autocomplete="off">
+                </div>
+                <p class="help">This is optional, if you don't, you'll remain anonymous.</p>
+            </div>
+
+                <div class="field">
+                    <div class="control">
+                        <label class="checkbox" >
+                            <input type="checkbox" id="myCheck" name="check" required> I agree to the <a href="/terms">terms and conditions</a>
+                        </label>
+                    </div>
+                </div>
+
+                <p id="termswarning"></p>
+
+
+                <div class="file is-centered has-name is-boxed">
+                    <label class="file-label">
+                        <input class="file-input" type="file" name="file" id="myFile" onclick="fileChecker()" required>
+                        <span class="file-cta">
+                            <span class="file-icon">
+                                <i class="fas fa-upload"></i>
+                            </span>
+                            <span class="filename" id="filename">
+                                Choose a file…
+                            </span>
+                        </span>
+                    </label>
+                </div>
+            <div class="control is-centered">
+                <button class="button is-primary has-text-centered" onclick="requireCheckbox()">Upload Pet</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% endblock %}
