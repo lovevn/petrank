@@ -43,6 +43,7 @@ class Pet(models.Model):
         PetSnapshot.objects.create(
          datetime=datetime.now(),
          pet=pet,
+         ranking=pet.ranking()[0],
          elo_rating=pet.elo_rating
         )
         return pet
@@ -60,7 +61,7 @@ class Pet(models.Model):
 
     def defeat(self, loser):
         """Defeat another Pet and update ELO rankings accordingly."""
-        
+
         r1 = 10 ** (self.elo_rating / 400)
         r2 = 10 ** (loser.elo_rating / 400)
         e1 = r1 / (r1 + r2)
@@ -74,12 +75,14 @@ class Pet(models.Model):
          datetime=datetime.now(),
          pet=self,
          elo_rating=self.elo_rating,
+         ranking=self.ranking()[0],
          won_against=loser
         )
         PetSnapshot.objects.create(
          datetime=datetime.now(),
          pet=loser,
          elo_rating=loser.elo_rating,
+         ranking=loser.ranking()[0],
          lost_against=self
         )
 
@@ -107,5 +110,6 @@ class PetSnapshot(models.Model):
     datetime = models.DateTimeField()
     pet = models.ForeignKey(Pet, on_delete=models.CASCADE)
     elo_rating = models.IntegerField()
+    ranking = models.IntegerField()
     won_against = models.ForeignKey(Pet, on_delete=models.CASCADE, null=True, blank=True, related_name='%(class)s_won_against')
     lost_against = models.ForeignKey(Pet, on_delete=models.CASCADE, null=True, blank=True, related_name='%(class)s_lost_against')

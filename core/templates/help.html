@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+<section class="hero is-primary">
+    <div class="tabs is-primary is-centered is-large">
+        <ul>
+            <li>
+                <a href="/upload/">
+                    <span class="icon is-small">
+                        <i class="fas fa-upload" aria-hidden="true"></i>
+                    </span>
+                    <span>Upload</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="/pets/">
+                    <span class="icon is-small">
+                        <i class="fas fa-chart-line" aria-hidden="true"></i>
+                    </span>
+                    <span>Rankings</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<style>p.help { line-height: 1.7; margin-bottom: 20px; max-width: 500px; margin-left: auto; margin-right: auto; text-align: center; font-size: 120%;} h3 {text-align: center;}</style>
+
+<section>
+    <div class="container">
+        <p class="help">You're wondering what the hell this website is, right? It's super simple. You pick the one you like the best, and then we give you new ones. Rank them based on whatever criteria you choose - cuteness, coolness, which you think would win in a fight, anything you want.</p>
+        <p class="help">The winner's rating will rise and the loser's will correspondingly fall.</p>
+        <p class="help">High-ranked pets will only gain a few points for beating low-ranked ones, but low-ranked ones will gain a lot for beating high ranked ones.</p>
+        <p class="help">Upload your pets or just rank others - you can watch how the ratings change over time on the <a href="/pets">rankings page.</a></p>
+        <p class="help">The top 10% of pets receive bountiful treats each evening, and the bottom 10% get sent to the farm. Pick wisely.</p>
+
+        <h3 class="header"><strong>FAQ</strong></h3>
+        <h3><em>I've uploaded my pet but don't see it on the site yet?</em></h3>
+        <p class="help">To make sure nobody is uploading anything they shouldn't, we manually verify all uploaded pictures. We're usually pretty quick with this. If it's not up within half an hour or so, shout at us on Twitter.</p>
+    </div>
+</section>
+ {% endblock %}

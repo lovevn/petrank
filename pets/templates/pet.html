@@ -22,15 +22,25 @@
     </section>
 
     <div class="container">
-        <div class="card">
-            <div class="card-image ">
-                <figure class="image">
-                    <img src="{{ pet.mediafile.url }}">
-                </figure>
+        <div class="columns">
+            <div class="column is-three-fifths is-offset-one-fifth">
+                <div class="card">
+                    <div class="card-image ">
+                        <figure class="image">
+                            <img src="{{ pet.mediafile.url }}">
+                        </figure>
+                    </div>
+                </div>
             </div>
-            <div class="card-content">
-                <div id="eloChart"></div>
-                <div id="eloTimeChart"></div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <div class="card-content">
+                    <div id="eloChart"></div>
+                    <div id="eloTimeChart"></div>
+                    <div id="rankChart"></div>
+                    <div id="rankTimeChart"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -102,6 +112,81 @@
                     enabled: true,
                     text:"ELO Rating"
                 },
+            },
+            legend: {
+                enabled: false
+            }
+        });
+    </script>
+
+    <script>
+        var residueChart = Highcharts.chart("rankChart", {
+            chart: {
+                plotBorderWidth: 1,
+                marginLeft: 50
+            },
+            title: {
+                text: "Rank Changes"
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: "Rank",
+                data: {{ rank_data }},
+                type: "line",
+            }],
+            xAxis: {
+                title: {
+                    enabled: true,
+                    text:"Contest"
+                },
+            },
+            yAxis: {
+                title: {
+                    enabled: true,
+                    text:"ELO Rating"
+                },
+                reversed: true,
+                allowDecimals: false,
+            },
+            legend: {
+                enabled: false
+            }
+        });
+    </script>
+
+    <script>
+        var residueChart = Highcharts.chart("rankTimeChart", {
+            chart: {
+                plotBorderWidth: 1,
+                marginLeft: 50
+            },
+            title: {
+                text: "Rank over Time"
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: "Rank",
+                data: {{ time_rank_data }},
+                type: "line",
+            }],
+            xAxis: {
+                type: "datetime",
+                title: {
+                    enabled: true,
+                    text:"Time"
+                },
+            },
+            yAxis: {
+                title: {
+                    enabled: true,
+                    text:"Rank"
+                },
+                reversed: true,
+                allowDecimals: false,
             },
             legend: {
                 enabled: false

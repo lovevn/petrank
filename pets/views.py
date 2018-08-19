@@ -10,7 +10,9 @@ def pet(request, id):
     snapshots = PetSnapshot.objects.filter(pet=pet)
     time_data = [[int(s.datetime.strftime('%s')) * 1000, s.elo_rating] for s in snapshots]
     data = [d[1] for d in time_data]
-    return render(request, "pet.html", {"pet": pet, "time_data": time_data, "data": data})
+    time_rank_data = [[int(s.datetime.strftime('%s')) * 1000, s.ranking] for s in snapshots if s.ranking != 0]
+    rank_data = [d[1] for d in time_rank_data]
+    return render(request, "pet.html", {"pet": pet, "time_data": time_data, "data": data, "time_rank_data": time_rank_data, "rank_data": rank_data})
 
 
 def pets(request):

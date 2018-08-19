@@ -48,3 +48,13 @@ td img {
 .tabs a {
     border-bottom-style: none;
 }
+.container{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.card{
+    -webkit-box-shadow: 5px 4px 11px -1px rgba(130,130,130,1);
+    -moz-box-shadow: 5px 4px 11px -1px rgba(130,130,130,1);
+    box-shadow: 5px 4px 11px -1px rgba(130,130,130,1);
+}

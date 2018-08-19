@@ -20,6 +20,10 @@ def terms(request):
     return render(request, "terms.html")
 
 
+def help(request):
+    return render(request, "help.html")
+
+
 def upload(request):
     if request.method == "POST":
         pet = Pet.create_from_file(request)

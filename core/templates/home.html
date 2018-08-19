@@ -61,28 +61,28 @@
 <section class="hero is-info"><a name="choices"></a>
     <div class="hero-body">
         <div><h2 class="which">Pick one</h2></div>
-        <div class="columns is-mobile">
+        <div class="columns is-mobile" style="max-width: 60rem; margin-left: auto; margin-right:auto;">
             {% for pet in pets %}
-            <div class="column">
-                <div class="card">
-                    <div class="card-image">
-                        <form method="POST">
-                            <input type="hidden" name="winner" value={{ pet.id }}>
-                            {% for pet2 in pets %}
-                                {% if pet.id != pet2.id %}
-                                    <input type="hidden" name="loser" value={{ pet2.id }}>
-                                {% endif %}
-                            {% endfor %}
-                            {% csrf_token %}
-                            <figure class="image is-square">
-                                <img src="{{ pet.mediafile.url }}" alt="{{ species }} {{ forloop.counter}}" onclick="$(this).parent().parent().submit()">
-                            </figure>
-                        </form>
+            <div class="column is-half">
+                    <div class="card">
+                        <div class="card-image">
+                            <form method="POST">
+                                <input type="hidden" name="winner" value={{ pet.id }}>
+                                {% for pet2 in pets %}
+                                    {% if pet.id != pet2.id %}
+                                        <input type="hidden" name="loser" value={{ pet2.id }}>
+                                    {% endif %}
+                                {% endfor %}
+                                {% csrf_token %}
+                                <figure class="image is-square">
+                                    <img src="{{ pet.mediafile.url }}" alt="{{ species }} {{ forloop.counter}}" onclick="$(this).parent().parent().submit()">
+                                </figure>
+                            </form>
+                        </div>
+                        <div class="has-text-centered" style="padding: 10px; font-weight: bold;">
+                        <p class="h1"> {{pet.name}} </p>
+                        </div>
                     </div>
-                    <div class="has-text-centered">
-                       <p class="h1"> {{pet.name}} </p>
-                    </div>
-                </div>
             </div>
             {% endfor %}
         </div>

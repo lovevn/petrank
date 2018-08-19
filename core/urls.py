@@ -12,7 +12,8 @@ urlpatterns = [
  path(r"pets/<slug:id>/", pet_views.pet),
  path(r"terms/", core_views.terms),
  path(r"admin/", admin.site.urls),
- path(r"upload/", core_views.upload)
+ path(r"upload/", core_views.upload),
+ path(r"help/", core_views.help)
 ] + static(
  settings.MEDIA_URL,
  document_root=settings.MEDIA_ROOT
