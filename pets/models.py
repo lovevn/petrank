@@ -29,8 +29,8 @@ class Pet(models.Model):
     owner = models.CharField(max_length=256, default="Anonymous")
 
     def __str__(self):
-        return "<Pet ({}): {}verified {}>".format(
-         self.id, "" if self.verified else "un", self.species
+        return "<Pet ({}): {}verified {} ({})>".format(
+         self.id, "" if self.verified else "un", self.species, self.name
         )
 
 
