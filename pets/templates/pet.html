@@ -52,7 +52,7 @@
         var residueChart = Highcharts.chart("eloChart", {
             chart: {
                 plotBorderWidth: 1,
-                marginLeft: 50
+                marginLeft: 70
             },
             title: {
                 text: "Rating Changes"
@@ -64,6 +64,10 @@
                 name: "ELO Rating",
                 data: {{ data }},
                 type: "line",
+                marker: {
+                    enabled: false
+                },
+                color: "#00d1b2"
             }],
             xAxis: {
                 title: {
@@ -74,7 +78,7 @@
             yAxis: {
                 title: {
                     enabled: true,
-                    text:"ELO Rating"
+                    text:"Rating"
                 },
             },
             legend: {
@@ -87,7 +91,7 @@
         var residueChart = Highcharts.chart("eloTimeChart", {
             chart: {
                 plotBorderWidth: 1,
-                marginLeft: 50
+                marginLeft: 70
             },
             title: {
                 text: "Rating over Time"
@@ -99,6 +103,10 @@
                 name: "ELO Rating",
                 data: {{ time_data }},
                 type: "line",
+                marker: {
+                    enabled: false
+                },
+                color: "#00d1b2"
             }],
             xAxis: {
                 type: "datetime",
@@ -110,8 +118,10 @@
             yAxis: {
                 title: {
                     enabled: true,
-                    text:"ELO Rating"
+                    text:"Rating"
                 },
+                reversed: false,
+                allowDecimals: true,
             },
             legend: {
                 enabled: false
@@ -123,7 +133,7 @@
         var residueChart = Highcharts.chart("rankChart", {
             chart: {
                 plotBorderWidth: 1,
-                marginLeft: 50
+                marginLeft: 70
             },
             title: {
                 text: "Rank Changes"
@@ -135,6 +145,10 @@
                 name: "Rank",
                 data: {{ rank_data }},
                 type: "line",
+                marker: {
+                    enabled: false
+                },
+                color: "#209cee"
             }],
             xAxis: {
                 title: {
@@ -149,6 +163,9 @@
                 },
                 reversed: true,
                 allowDecimals: false,
+                labels: {
+                    formatter: function() {return this.value == 0 ? "" : this.value}
+                }
             },
             legend: {
                 enabled: false
@@ -160,7 +177,7 @@
         var residueChart = Highcharts.chart("rankTimeChart", {
             chart: {
                 plotBorderWidth: 1,
-                marginLeft: 50
+                marginLeft: 70
             },
             title: {
                 text: "Rank over Time"
@@ -172,6 +189,10 @@
                 name: "Rank",
                 data: {{ time_rank_data }},
                 type: "line",
+                marker: {
+                    enabled: false
+                },
+                color: "#209cee"
             }],
             xAxis: {
                 type: "datetime",
@@ -187,6 +208,9 @@
                 },
                 reversed: true,
                 allowDecimals: false,
+                labels: {
+                    formatter: function() {return this.value == 0 ? "" : this.value}
+                }
             },
             legend: {
                 enabled: false
