@@ -9,7 +9,7 @@ class Pet(models.Model):
 
     class Meta:
         db_table = "pets"
-        ordering = ["verified"]
+        ordering = ["disabled", "verified"]
 
 
     def create_filename(instance, filename):
@@ -25,12 +25,14 @@ class Pet(models.Model):
     )
     elo_rating = models.IntegerField(default=1000)
     verified = models.BooleanField(default=False)
+    disabled = models.BooleanField(default=False)
     name = models.CharField(max_length=256, default="Anonymous")
     owner = models.CharField(max_length=256, default="Anonymous")
 
     def __str__(self):
-        return "<Pet ({}): {}verified {} ({})>".format(
-         self.id, "" if self.verified else "un", self.species, self.name
+        return "<Pet ({}): {}verified {} ({}){}>".format(
+         self.id, "" if self.verified else "un", self.species, self.name,
+         " DISABLED" if self.disabled else ""
         )
 
 
