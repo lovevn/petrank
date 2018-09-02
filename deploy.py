@@ -32,6 +32,9 @@ if len(sys.argv) < 3 or sys.argv[2] != "nofiles":
         subprocess.call(
          "scp -r ./{} {}:~/{}/source/{}".format(file_, sitename, sitename, file_), shell=True
         )
+    subprocess.call(
+     "scp -r ./core/secrets.py {}:~/{}/source/core/secrets.py".format(sitename, sitename), shell=True
+    )
 
 # Turn off Debug
 subprocess.call(
