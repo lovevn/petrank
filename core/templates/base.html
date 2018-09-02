@@ -1,3 +1,5 @@
+{% load sass_tags %}
+
 <!DOCTYPE html>
 <html>
 
@@ -7,7 +9,7 @@
     <link rel="shortcut icon" href="/static/images/favicon.ico">
     <title>PetRank</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <link href="{% sass_src 'css/main.scss' %}" rel="stylesheet" type="text/css">
     <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <!--analytics-->
@@ -39,7 +41,7 @@
                 <p>Source code available <a href="https://www.github.com/alexharston/petrank" target="_blank">here</a>.</p>
                 <p>Terms & Conditions <a href="/terms/">here.</a></p>
                 <p><a href="/help/">What is this?</a></p>
-            
+
     </footer>
 </body>
 </html>

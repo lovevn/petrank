@@ -26,6 +26,7 @@ INSTALLED_APPS = [
  "django.contrib.messages",
  "django.contrib.admin",
  "django_unused_media",
+ "sass_processor",
  "core",
  "pets"
 ]
@@ -40,6 +41,7 @@ MIDDLEWARE = [
 
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, "../static"))
+SASS_PROCESSOR_ROOT = os.path.abspath(os.path.join(BASE_DIR, "core", "static"))
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 

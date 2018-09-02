@@ -5,6 +5,7 @@ secrets.py
 *.log
 *.json
 *.sh
+*.css*
 .dropbox
 .DS_Store
 .vscode

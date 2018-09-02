@@ -1,5 +1,68 @@
-$footer-background-color: $white-bis !default
+figure img {
+    cursor: pointer;
+    object-fit: cover;
+    overflow: hidden;
+}
 
-.footer
-  background-color: $footer-background-color
-  padding: 3rem 1.5rem 3rem
+tr {
+    cursor: pointer;
+}
+
+.image2 {
+    background-repeat: repeat;
+    display: block;
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    -webkit-display: none;
+}
+
+h2.title {
+    font-size: 110%;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px;
+}
+
+td img {
+    width: 25px;
+    height: 25px;
+}
+
+@media only screen and (max-width: 550px){
+  .tabs ul {
+    flex-direction: column;
+
+    li {
+      width: 100%;
+    }
+  }
+
+  .select {
+      margin-right: 0px !important;
+  }
+}
+
+.select {
+    margin-right: 25px;
+}
+
+.which {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2em;
+    text-align: center;
+}
+
+.tabs a {
+    border-bottom-style: none;
+}
+.container{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.card{
+    -webkit-box-shadow: 5px 4px 11px -1px rgba(130,130,130,1);
+    -moz-box-shadow: 5px 4px 11px -1px rgba(130,130,130,1);
+    box-shadow: 5px 4px 11px -1px rgba(130,130,130,1);
+}
