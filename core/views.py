@@ -2,6 +2,7 @@
 
 from django.shortcuts import render, redirect, get_object_or_404
 import random
+import subprocess
 from pets.models import Pet
 
 def home(request):
@@ -30,6 +31,8 @@ def help(request):
 def upload(request):
     if request.method == "POST":
         pet = Pet.create_from_file(request)
+        subprocess.call("convert {} -auto-orient {}".format(pet.mediafile.path, pet.mediafile.path), shell=True)
+        subprocess.call("chmod 744 {}".format(pet.mediafile.path), shell=True)
         return redirect("/pets/{}/".format(pet.id))
     return render(request, "upload.html")
 
