@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block main %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     <section class="hero is-info">
         <div class="hero-body">
             <div class="container">
@@ -49,7 +50,7 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
 
     <script>
-        var residueChart = Highcharts.chart("eloChart", {
+        var eloChart = Highcharts.chart("eloChart", {
             chart: {
                 plotBorderWidth: 1,
                 marginLeft: 70,
@@ -89,7 +90,12 @@
     </script>
 
     <script>
-        var residueChart = Highcharts.chart("eloTimeChart", {
+        var data = {{ time_data }};
+        for (var x = 0; x < data.length; x++) {
+            var m = moment(data[x][0]);
+            data[x][0] = (m.unix() + m.utcOffset() * 60) * 1000;
+        }
+        var eloTimeChart = Highcharts.chart("eloTimeChart", {
             chart: {
                 plotBorderWidth: 1,
                 marginLeft: 70,
@@ -103,7 +109,7 @@
             },
             series: [{
                 name: "ELO Rating",
-                data: {{ time_data }},
+                data: data,
                 type: "line",
                 marker: {
                     enabled: false
@@ -132,7 +138,7 @@
     </script>
 
     <script>
-        var residueChart = Highcharts.chart("rankChart", {
+        var rankChart = Highcharts.chart("rankChart", {
             chart: {
                 plotBorderWidth: 1,
                 marginLeft: 70,
@@ -177,7 +183,12 @@
     </script>
 
     <script>
-        var residueChart = Highcharts.chart("rankTimeChart", {
+        var data = {{ time_rank_data }};
+        for (var x = 0; x < data.length; x++) {
+            var m = moment(data[x][0]);
+            data[x][0] = (m.unix() + m.utcOffset() * 60) * 1000;
+        }
+        var rankTimeChart = Highcharts.chart("rankTimeChart", {
             chart: {
                 plotBorderWidth: 1,
                 marginLeft: 70,
@@ -191,7 +202,7 @@
             },
             series: [{
                 name: "Rank",
-                data: {{ time_rank_data }},
+                data: data,
                 type: "line",
                 marker: {
                     enabled: false
