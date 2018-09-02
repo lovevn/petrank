@@ -21,4 +21,5 @@ def pet(request, id):
 def pets(request):
     dogs = Pet.objects.filter(species="Dog", verified=True).order_by("-elo_rating")
     cats = Pet.objects.filter(species="Cat", verified=True).order_by("-elo_rating")
-    return render(request, "pets.html", {"lists": [[dogs, "DOGGOS"], [cats, "CATS"]]})
+    misc = Pet.objects.filter(species="Misc", verified=True).order_by("-elo_rating")
+    return render(request, "pets.html", {"lists": [[dogs, "DOGGOS"], [cats, "CATS"], [misc, "MISC"]]})

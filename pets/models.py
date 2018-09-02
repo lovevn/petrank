@@ -20,7 +20,7 @@ class Pet(models.Model):
     mediafile = models.FileField(upload_to=create_filename)
     species = models.CharField(
      max_length=16,
-     choices=(("Cat", "Cat"), ("Dog", "Dog")),
+     choices=(("Cat", "Cat"), ("Dog", "Dog"), ("Misc", "Misc")),
      default="Cat"
     )
     elo_rating = models.IntegerField(default=1000)
