@@ -10,6 +10,7 @@
                         <select id="speciesSelect" class="is-primary is-outlined is-small">
                             <option {% if species == 'Cat' %}selected{% endif %}>Cat</option>
                             <option {% if species == 'Dog' %}selected{% endif %}>Dog</option>
+                            <option {% if species == 'Misc' %}selected{% endif %}>Misc</option>
                         </select>
                     </div>
                     <span class="icon is-left">
@@ -17,26 +18,7 @@
                     </span>
                 </div>
             </li>
-            <!-- <li>
-                <div class="field">
-                    <div class="file is-primary">
-                        <label class="file-label">
-                            <form method="POST" enctype="multipart/form-data">
-                                <input class="file-input" type="file" name="file" onchange="this.form.submit()">
-                                {% csrf_token %}
-                            </form>
-                            <span class="file-cta">
-                                <span class="file-icon">
-                                    <i class="fas fa-upload"></i>
-                                </span>
-                                <span class="file-label">
-                                    Upload your {{ species }}
-                                </span>
-                            </span>
-                        </label>
-                    </div>
-                </div>
-            </li> -->
+
             <li>
                 <a href="/upload/">
                     <span class="icon is-small">
@@ -64,9 +46,9 @@
         <div class="columns is-mobile" style="max-width: 60rem; margin-left: auto; margin-right:auto;">
             {% for pet in pets %}
             <div class="column is-half">
-                    <div class="card">
+                    <div class="card" >
                         <div class="card-image">
-                            <form method="POST">
+                            <form method="POST" id="{% if forloop.counter == 1%}left{% else %}right{% endif %}">
                                 <input type="hidden" name="winner" value={{ pet.id }}>
                                 {% for pet2 in pets %}
                                     {% if pet.id != pet2.id %}
@@ -93,6 +75,22 @@
 <script>
     $("#speciesSelect").change(function() {
         window.location.replace("/?s=" + $(this).val());
-    })
+    });
+
+    $(document).on('keydown', function(e){
+        if (e.which == 37) {
+            $("#left").submit();
+        }
+        console.log("click");
+
+    });
+
+    $(document).keydown(function(e){
+        if (e.which == 39) {
+            $("#right").submit();
+        }
+    });
 </script>
+
+
 {% endblock %}
