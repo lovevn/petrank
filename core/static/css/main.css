@@ -37,6 +37,14 @@ td img {
       width: 100%;
     }
   }
+
+  .select {
+      margin-right: 0px !important;
+  }
+}
+
+.select {
+    margin-right: 25px;
 }
 
 .which {
