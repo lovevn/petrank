@@ -71,6 +71,20 @@
                 },
                 color: "#00d1b2"
             }],
+            tooltip: {
+                formatter: function() {
+                    var text = "<b>Contest:</b> " + this.x + "<br><b>ELO</b>: " + this.y + "<br>";
+                    var beatenby = {{ defeats|safe }}[this.series.data.indexOf( this.point )];
+                    var wonagainst = {{ wins|safe }}[this.series.data.indexOf( this.point )];
+                    if ((wonagainst == "") && (beatenby != "")) {
+                        return text + "(Defeated by " + beatenby + ")"
+                    } else if ((beatenby == "") && (wonagainst != "")) {
+                        return text + "(Won against " + wonagainst + ")"
+                    } else {
+                        return text
+                    }
+                }
+            },
             xAxis: {
                 title: {
                     enabled: true,
@@ -114,8 +128,23 @@
                 marker: {
                     enabled: false
                 },
-                color: "#00d1b2"
+                color: "#00d1b2",
+                step: 'left'
             }],
+            tooltip: {
+                formatter: function() {
+                    var text = Highcharts.dateFormat('%a, %e %b %Y %H:%M:%S', new Date(this.x)) + "<br><b>ELO</b>: " + this.y + "<br>";
+                    var beatenby = {{ defeats|safe }}[this.series.data.indexOf( this.point )];
+                    var wonagainst = {{ wins|safe }}[this.series.data.indexOf( this.point )];
+                    if ((wonagainst == "") && (beatenby != "")) {
+                        return text + "(Defeated by " + beatenby + ")"
+                    } else if ((beatenby == "") && (wonagainst != "")) {
+                        return text + "(Won against " + wonagainst + ")"
+                    } else {
+                        return text
+                    }
+                }
+            },
             xAxis: {
                 type: "datetime",
                 title: {
@@ -157,8 +186,22 @@
                 marker: {
                     enabled: false
                 },
-                color: "#209cee"
+                color: "#209cee",
             }],
+            tooltip: {
+                formatter: function() {
+                    var text = "<b>Contest:</b> " + this.x + "<br><b>Rank</b>: " + this.y + "<br>";
+                    var beatenby = {{ defeats|safe }}[this.series.data.indexOf( this.point )];
+                    var wonagainst = {{ wins|safe }}[this.series.data.indexOf( this.point )];
+                    if ((wonagainst == "") && (beatenby != "")) {
+                        return text + "(Defeated by " + beatenby + ")"
+                    } else if ((beatenby == "") && (wonagainst != "")) {
+                        return text + "(Won against " + wonagainst + ")"
+                    } else {
+                        return text
+                    }
+                }
+            },
             xAxis: {
                 title: {
                     enabled: true,
@@ -207,8 +250,23 @@
                 marker: {
                     enabled: false
                 },
-                color: "#209cee"
+                color: "#209cee",
+                step: 'left'
             }],
+            tooltip: {
+                formatter: function() {
+                    var text = Highcharts.dateFormat('%a, %e %b %Y %H:%M:%S', new Date(this.x)) + "<br><b>Rank</b>: " + this.y + "<br>";
+                    var beatenby = {{ defeats|safe }}[this.series.data.indexOf( this.point )];
+                    var wonagainst = {{ wins|safe }}[this.series.data.indexOf( this.point )];
+                    if ((wonagainst == "") && (beatenby != "")) {
+                        return text + "(Defeated by " + beatenby + ")"
+                    } else if ((beatenby == "") && (wonagainst != "")) {
+                        return text + "(Won against " + wonagainst + ")"
+                    } else {
+                        return text
+                    }
+                }
+            },
             xAxis: {
                 type: "datetime",
                 title: {
