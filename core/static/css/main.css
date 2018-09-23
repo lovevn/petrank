@@ -27,8 +27,6 @@ td img {
 @media only screen and (max-width: 550px) {
   .tabs ul {
     flex-direction: column; }
-    .tabs ul li {
-      width: 100%; }
   .select {
     margin-right: 0px !important; } }
 

@@ -1,6 +1,8 @@
 import os
 import binascii
 
+from .secrets import SECRET_KEY
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = binascii.hexlify(os.urandom(24)).decode()
@@ -27,6 +29,7 @@ INSTALLED_APPS = [
  "django.contrib.admin",
  "django_unused_media",
  "sass_processor",
+ "track",
  "core",
  "pets"
 ]
@@ -37,6 +40,7 @@ MIDDLEWARE = [
  "django.middleware.csrf.CsrfViewMiddleware",
  "django.contrib.auth.middleware.AuthenticationMiddleware",
  "django.contrib.messages.middleware.MessageMiddleware",
+ "track.middleware.inspect_response"
 ]
 
 STATIC_URL = "/static/"
@@ -55,3 +59,7 @@ TEMPLATES = [{
   ],
  },
 }]
+
+TRACK_TZ = "Europe/London"
+TRACK_PATH_EXCLUDE = [r"\.ico$", r"\.txt$", r"^/admin", r"^/apple"]
+GEOIP_PATH = "/usr/local/bin/geolite2"
