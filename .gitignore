@@ -9,5 +9,6 @@ secrets.py
 .dropbox
 .DS_Store
 .vscode
+*.md
 media
 memories
