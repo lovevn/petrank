@@ -25,6 +25,12 @@
     }
 
 </script>
+
+<style>
+.highlight {
+    background-color: #00d1b2;
+}
+</style>
 <section>
     <div class="container">
         <form method="POST" enctype="multipart/form-data">
@@ -77,7 +83,7 @@
                     <div class="file is-centered has-name is-boxed">
                         <label class="file-label">
                             <input class="file-input" type="file" name="file" id="myFile" onclick="fileChecker()" required>
-                            <span class="file-cta">
+                            <span class="file-cta drop-area">
                                 <span class="file-icon">
                                     <i class="fas fa-upload"></i>
                                 </span>
@@ -114,5 +120,37 @@
         </form>
     </div>
 </section>
+
+<script>
+var dropArea = $(".drop-area")[0];
+var fileInput = $("#myFile")[0];
+["dragenter", "dragover", "dragleave", "drop"].forEach(eventName => {
+    dropArea.addEventListener(eventName, preventDefaults, false);
+})
+function preventDefaults (e) {
+    e.preventDefault();
+    e.stopPropagation();
+}
+["dragenter", "dragover"].forEach(eventName => {
+    dropArea.addEventListener(eventName, highlight, false);
+});
+["dragleave", "drop"].forEach(eventName => {
+    dropArea.addEventListener(eventName, unhighlight, false);
+});
+function highlight(e) {
+    dropArea.classList.add("highlight");
+}
+function unhighlight(e) {
+    dropArea.classList.remove("highlight");
+}
+dropArea.addEventListener("drop", function handleDrop(e) {
+    console.log('drop')
+    var dt = e.dataTransfer;
+    var files = dt.files;
+    fileInput.files = e.dataTransfer.files;
+    fileInput.files = files;
+    document.getElementById('filename').innerHTML = files[0].name;
+}, false);
+</script>
 
 {% endblock %}
