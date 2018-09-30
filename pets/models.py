@@ -26,6 +26,7 @@ class Pet(models.Model):
     elo_rating = models.IntegerField(default=1000)
     verified = models.BooleanField(default=False)
     disabled = models.BooleanField(default=False)
+    rejection_reason = models.TextField(blank=True, null=True)
     name = models.CharField(max_length=256, default="Anonymous")
     owner = models.CharField(max_length=256, default="Anonymous")
 

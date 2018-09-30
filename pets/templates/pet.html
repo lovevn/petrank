@@ -14,7 +14,11 @@
                 <h3 class="title is-size-3">
                     <i class="fas fa-times-circle has-text-danger" aria-hidden="true"></i> Verified: {{ pet.verified }}
                 </h3>
+                {% if pet.rejection_reason %}
+                <p>Rejected because: {{ pet.rejection_reason }}</p>
+                {% else %}
                 <p>Bear with us - we need to verify that the image is actually a pet and not anything unsavory!</p>
+                {% endif %}
                 {% endif %}
 
                 <h3 class="subtitle is-size-3"><i class="fas fa-chart-line has-text-link" aria-hidden="True"></i> Rank: {{ pet.ranking.0 }} of {{ pet.ranking.1 }}</h3>
