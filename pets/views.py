@@ -15,13 +15,13 @@ def pet(request, id):
 
     time_data = [[int(s.datetime.strftime('%s')) * 1000, s.elo_rating] for s in snapshots]
     if time_data: time_data += [[int(datetime.now().strftime('%s')) * 1000, time_data[-1][1]]]
-    data = [d[1] for d in time_data]
+    data = [d[1] for d in time_data[:-1]]
     time_rank_data = [[int(s.datetime.strftime('%s')) * 1000, s.ranking] for s in snapshots if s.ranking != 0]
     if time_rank_data:
         time_rank_data += [[int(datetime.now().strftime('%s')) * 1000, time_rank_data[-1][1]]]
     else:
         time_rank_data = [[int(datetime.now().strftime('%s')) * 1000, 0]]
-    rank_data = [d[1] for d in time_rank_data]
+    rank_data = [d[1] for d in time_rank_data[:-1]]
     print(time_rank_data)
     defeats = [s.lost_against.name if s.lost_against else "" for s in snapshots]
     wins = [s.won_against.name if s.won_against else "" for s in snapshots]
