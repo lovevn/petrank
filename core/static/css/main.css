@@ -50,4 +50,22 @@ td img {
   -moz-box-shadow: 5px 4px 11px -1px #828282;
   box-shadow: 5px 4px 11px -1px #828282; }
 
-/*# sourceMappingURL=../../../../../../../../static/css/main.css.map */
+h3.help {
+  font-size: 120%;
+  text-align: center; }
+
+p.help {
+  line-height: 1.7;
+  margin-bottom: 20px;
+  margin-top: 40px;
+  max-width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 120%; }
+
+@media only screen and (max-width: 500px) {
+  .table {
+    font-size: 60%; } }
+
+/*# sourceMappingURL=main.css.map */
